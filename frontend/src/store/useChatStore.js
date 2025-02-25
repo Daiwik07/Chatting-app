@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import toast from "react-hot-toast";
+import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import { useAuthStore } from "./useAuthStore";
 
@@ -40,6 +40,9 @@ export const useChatStore = create((set, get) => ({
       set({ messages: [...messages, res.data] });
     } catch (error) {
       console.error("Failed to send message:", error);
+      console.error("Error details:", error);
+      console.error("Error response:", error.response);
+      console.error("Error response data:", error.response.data);
       toast.error(error.response.data.message);
     }
   },
